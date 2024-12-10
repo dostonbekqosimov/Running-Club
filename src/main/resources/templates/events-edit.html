@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Default Title</title>
+    <!-- Add Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<main class="flex-shrink-0">
+    <section layout:fragment="body" class="py-5">
+        <div class="container">
+            <form th:action="@{/events/{eventId}/edit (eventId=${eventId})}" th:object="${event}" method="post" class="row g-3">
+                <div class="col-md-6">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
+                           placeholder="Event name">
+                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></p>
+
+                </div>
+                <div class="col-md-6">
+                    <label for="type" class="form-label">Type</label>
+                    <input type="text" class="form-control" id="type" th:field="*{type}" placeholder="Event type">
+                    <p th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="text-danger"></p>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPhotoUrl" class="form-label">Photo URL</label>
+                    <input type="text" class="form-control" id="inputPhotoUrl" th:field="*{photoUrl}"
+                           placeholder="Event photo">
+                    <p th:if="${#fields.hasErrors('photoUrl')}" th:errors="*{photoUrl}" class="text-danger"></p>
+                </div>
+                <div class="col-md-6">
+                    <label for="startDate" class="form-label">Start Time</label>
+                    <input type="datetime-local" class="form-control" id="startDate" th:field="*{startTime}"
+                           placeholder="Event start time">
+                    <p th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}" class="text-danger"></p>
+                </div>
+                <div class="col-md-6">
+                    <label for="endDate" class="form-label">End Time</label>
+                    <input type="datetime-local" class="form-control" id="endDate" th:field="*{endTime}"
+                           placeholder="Event end time">
+                    <p th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}" class="text-danger"></p>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Edit Event</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- Add Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

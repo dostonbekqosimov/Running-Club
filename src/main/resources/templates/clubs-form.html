@@ -1,0 +1,44 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <title th:text="${title}">Default Title</title>
+</head>
+<body>
+
+<main class="flex-shrink-0">
+    <section layout:fragment="body" class="py-5">
+        <div class="container">
+            <form th:action="@{/clubs/save}" th:object="${club}" method="post" class="row g-3">
+                <div class="col-md-6">
+                    <label for="inputTitle" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="inputTitle" th:field="*{title}">
+                    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></p>
+
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPhotoUrl" class="form-label">Photo URL</label>
+                    <input type="text" class="form-control" id="inputPhotoUrl" th:field="*{photoUrl}">
+                    <p th:if="${#fields.hasErrors('photoUrl')}" th:errors="*{photoUrl}" class="text-danger"></p>
+                </div>
+                <div class="col-12">
+                    <label for="inputContent" class="form-label">Content</label>
+                    <textarea class="form-control" id="inputContent" th:field="*{content}"></textarea>
+                    <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-danger"></p>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Save Club</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- Add Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
